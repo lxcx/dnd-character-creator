@@ -502,6 +502,182 @@
             font-style: italic;
         }
 
+        .weapon-card-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #c9ad6a;
+        }
+
+        .weapon-action-btn {
+            padding: 4px 8px;
+            font-size: 0.75em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .weapon-action-btn.modifier {
+            background: #007bff;
+            color: white;
+        }
+
+        .weapon-action-btn.modifier:hover {
+            background: #0056b3;
+        }
+
+        .weapon-action-btn.remove {
+            background: #dc3545;
+            color: white;
+        }
+
+        .weapon-action-btn.remove:hover {
+            background: #bd2130;
+        }
+
+        .weapon-modifier-badge {
+            background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        .weapon-add-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .weapon-add-btn {
+            flex: 1;
+            padding: 8px 12px;
+            font-size: 0.85em;
+            border: 2px dashed #c9ad6a;
+            background: transparent;
+            color: #58180d;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .weapon-add-btn:hover {
+            background: #fdf1dc;
+            border-color: #58180d;
+        }
+
+        .weapon-add-btn i {
+            margin-right: 5px;
+        }
+
+        /* Weapon Modal Styles */
+        .weapon-modal-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .weapon-modal-filter {
+            padding: 6px 12px;
+            border: 1px solid #c9ad6a;
+            background: white;
+            border-radius: 4px;
+            font-size: 0.85em;
+            cursor: pointer;
+        }
+
+        .weapon-modal-filter:focus {
+            outline: none;
+            border-color: #58180d;
+        }
+
+        .weapon-modal-search {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .weapon-modal-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #e0c9a0;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            background: #fdf1dc;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .weapon-modal-item:hover {
+            background: #e0c9a0;
+            border-color: #c9ad6a;
+        }
+
+        .weapon-modal-item.selected {
+            background: #c9ad6a;
+            border-color: #58180d;
+        }
+
+        .weapon-modal-item-info {
+            flex: 1;
+        }
+
+        .weapon-modal-item-name {
+            font-weight: 600;
+            color: #58180d;
+        }
+
+        .weapon-modal-item-details {
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+
+        .weapon-modal-item-stats {
+            text-align: right;
+            font-size: 0.85em;
+        }
+
+        .custom-weapon-form {
+            padding: 15px;
+            background: #fdf1dc;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .custom-weapon-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .custom-weapon-field {
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .custom-weapon-field label {
+            display: block;
+            font-size: 0.8em;
+            color: #58180d;
+            margin-bottom: 3px;
+        }
+
+        .custom-weapon-field input,
+        .custom-weapon-field select {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #c9ad6a;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
         .hidden {
             display: none;
         }
@@ -606,8 +782,7 @@
         }
 
         .subclass-select {
-            flex: 1;
-            min-width: 150px;
+            width: 100%;
         }
 
         .multiclass-section {
@@ -620,6 +795,7 @@
 
         .multiclass-row {
             display: flex;
+            flex-wrap: wrap;
             gap: 8px;
             align-items: center;
             margin-bottom: 10px;
@@ -630,11 +806,18 @@
 
         .multiclass-row select:first-child {
             flex: 1;
+            min-width: 120px;
         }
 
         .multiclass-row .level-select {
-            width: 85px;
-            min-width: 85px;
+            width: 90px;
+            min-width: 90px;
+            flex-shrink: 0;
+        }
+        
+        .multiclass-row .subclass-select {
+            width: 100%;
+            margin-top: 4px;
         }
 
         .remove-multiclass-btn {
@@ -1675,165 +1858,159 @@
                 </div>
                 <div id="raceDescription" class="race-description hidden"></div>
 
-                <!-- Row 2: Class & Occupation -->
-                <div class="form-row">
-                    <div class="form-group" style="flex: 2;">
-                        <label for="npcClass">Class</label>
-                        <div class="class-level-row">
-                            <select id="npcClass" onchange="onClassChange()">
-                                <option value="commoner" selected>Commoner</option>
-                                <option value="random">Random Adventurer</option>
-                                <option value="artificer">Artificer</option>
-                                <option value="barbarian">Barbarian</option>
-                                <option value="bard">Bard</option>
-                                <option value="cleric">Cleric</option>
-                                <option value="druid">Druid</option>
-                                <option value="fighter">Fighter</option>
-                                <option value="monk">Monk</option>
-                                <option value="paladin">Paladin</option>
-                                <option value="ranger">Ranger</option>
-                                <option value="rogue">Rogue</option>
-                                <option value="sorcerer">Sorcerer</option>
-                                <option value="warlock">Warlock</option>
-                                <option value="wizard">Wizard</option>
-                            </select>
-                            <select id="npcClassLevel" class="level-select" style="display: none;" onchange="onLevelChange()">
-                                <option value="1">Lvl 1</option>
-                                <option value="2">Lvl 2</option>
-                                <option value="3">Lvl 3</option>
-                                <option value="4">Lvl 4</option>
-                                <option value="5">Lvl 5</option>
-                                <option value="6">Lvl 6</option>
-                                <option value="7">Lvl 7</option>
-                                <option value="8">Lvl 8</option>
-                                <option value="9">Lvl 9</option>
-                                <option value="10">Lvl 10</option>
-                                <option value="11">Lvl 11</option>
-                                <option value="12">Lvl 12</option>
-                                <option value="13">Lvl 13</option>
-                                <option value="14">Lvl 14</option>
-                                <option value="15">Lvl 15</option>
-                                <option value="16">Lvl 16</option>
-                                <option value="17">Lvl 17</option>
-                                <option value="18">Lvl 18</option>
-                                <option value="19">Lvl 19</option>
-                                <option value="20">Lvl 20</option>
-                            </select>
-                            <select id="npcSubclass" class="subclass-select" style="display: none;">
-                                <option value="random">Random Subclass</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="occupation">Occupation</label>
-                        <select id="occupation" onchange="showOccupationDescription()">
-                            <option value="random">Random</option>
-                            <optgroup label="Special">
-                                <option value="infant">Infant (auto-assigned)</option>
-                            </optgroup>
-                            <optgroup label="Trades & Crafts">
-                                <option value="blacksmith">Blacksmith</option>
-                                <option value="carpenter">Carpenter</option>
-                                <option value="mason">Mason</option>
-                                <option value="potter">Potter</option>
-                                <option value="weaver">Weaver</option>
-                                <option value="tailor">Tailor</option>
-                                <option value="cobbler">Cobbler</option>
-                                <option value="tanner">Tanner</option>
-                                <option value="jeweler">Jeweler</option>
-                                <option value="glassblower">Glassblower</option>
-                            </optgroup>
-                            <optgroup label="Food & Drink">
-                                <option value="baker">Baker</option>
-                                <option value="butcher">Butcher</option>
-                                <option value="brewer">Brewer</option>
-                                <option value="cook">Cook</option>
-                                <option value="innkeeper">Innkeeper</option>
-                                <option value="vintner">Vintner</option>
-                            </optgroup>
-                            <optgroup label="Agriculture & Nature">
-                                <option value="farmer">Farmer</option>
-                                <option value="shepherd">Shepherd</option>
-                                <option value="fisherman">Fisherman</option>
-                                <option value="hunter">Hunter</option>
-                                <option value="trapper">Trapper</option>
-                                <option value="woodcutter">Woodcutter</option>
-                                <option value="herbalist">Herbalist</option>
-                                <option value="beekeeper">Beekeeper</option>
-                                <option value="miller">Miller</option>
-                            </optgroup>
-                            <optgroup label="Commerce">
-                                <option value="merchant">Merchant</option>
-                                <option value="peddler">Peddler</option>
-                                <option value="shopkeeper">Shopkeeper</option>
-                                <option value="banker">Banker</option>
-                                <option value="trader">Trader</option>
-                            </optgroup>
-                            <optgroup label="Service">
-                                <option value="servant">Servant</option>
-                                <option value="stablehand">Stablehand</option>
-                                <option value="barkeep">Barkeep</option>
-                                <option value="courier">Courier</option>
-                                <option value="gravedigger">Gravedigger</option>
-                            </optgroup>
-                            <optgroup label="Scholarly">
-                                <option value="scholar">Scholar</option>
-                                <option value="scribe">Scribe</option>
-                                <option value="librarian">Librarian</option>
-                                <option value="tutor">Tutor</option>
-                                <option value="cartographer">Cartographer</option>
-                            </optgroup>
-                            <optgroup label="Religious">
-                                <option value="acolyte">Acolyte</option>
-                                <option value="priest">Priest</option>
-                                <option value="monk_civilian">Monk (Religious)</option>
-                                <option value="gravewarden">Gravewarden</option>
-                            </optgroup>
-                            <optgroup label="Entertainment">
-                                <option value="entertainer">Entertainer</option>
-                                <option value="musician">Musician</option>
-                                <option value="actor">Actor</option>
-                                <option value="jester">Jester</option>
-                                <option value="storyteller">Storyteller</option>
-                            </optgroup>
-                            <optgroup label="Medical">
-                                <option value="healer">Healer</option>
-                                <option value="midwife">Midwife</option>
-                                <option value="apothecary">Apothecary</option>
-                            </optgroup>
-                            <optgroup label="Military & Guard">
-                                <option value="soldier">Soldier</option>
-                                <option value="guard">Guard</option>
-                                <option value="watchman">Watchman</option>
-                                <option value="bouncer">Bouncer</option>
-                            </optgroup>
-                            <optgroup label="Maritime">
-                                <option value="sailor">Sailor</option>
-                                <option value="dockworker">Dockworker</option>
-                                <option value="shipwright">Shipwright</option>
-                            </optgroup>
-                            <optgroup label="Nobility & Governance">
-                                <option value="noble">Noble</option>
-                                <option value="advisor">Advisor</option>
-                                <option value="herald">Herald</option>
-                                <option value="diplomat">Diplomat</option>
-                                <option value="tax_collector">Tax Collector</option>
-                            </optgroup>
-                            <optgroup label="Criminal">
-                                <option value="pickpocket">Pickpocket</option>
-                                <option value="smuggler">Smuggler</option>
-                                <option value="fence">Fence</option>
-                                <option value="beggar">Beggar</option>
-                            </optgroup>
-                            <optgroup label="Labor">
-                                <option value="miner">Miner</option>
-                                <option value="ratcatcher">Ratcatcher</option>
-                                <option value="lamplighter">Lamplighter</option>
-                                <option value="chimneysweep">Chimney Sweep</option>
-                            </optgroup>
+                <!-- Row 2: Occupation -->
+                <!-- Class Section -->
+                <div class="form-group">
+                    <label for="npcClass">Class</label>
+                    <div class="class-level-row">
+                        <select id="npcClass" onchange="onClassChange()">
+                            <option value="commoner" selected>Commoner</option>
+                            <option value="random">Random Adventurer</option>
+                            <option value="artificer">Artificer</option>
+                            <option value="barbarian">Barbarian</option>
+                            <option value="bard">Bard</option>
+                            <option value="cleric">Cleric</option>
+                            <option value="druid">Druid</option>
+                            <option value="fighter">Fighter</option>
+                            <option value="monk">Monk</option>
+                            <option value="paladin">Paladin</option>
+                            <option value="ranger">Ranger</option>
+                            <option value="rogue">Rogue</option>
+                            <option value="sorcerer">Sorcerer</option>
+                            <option value="warlock">Warlock</option>
+                            <option value="wizard">Wizard</option>
+                        </select>
+                        <select id="npcClassLevel" class="level-select" style="display: none;" onchange="onLevelChange()">
+                            <option value="1">Lvl 1</option>
+                            <option value="2">Lvl 2</option>
+                            <option value="3">Lvl 3</option>
+                            <option value="4">Lvl 4</option>
+                            <option value="5">Lvl 5</option>
+                            <option value="6">Lvl 6</option>
+                            <option value="7">Lvl 7</option>
+                            <option value="8">Lvl 8</option>
+                            <option value="9">Lvl 9</option>
+                            <option value="10">Lvl 10</option>
+                            <option value="11">Lvl 11</option>
+                            <option value="12">Lvl 12</option>
+                            <option value="13">Lvl 13</option>
+                            <option value="14">Lvl 14</option>
+                            <option value="15">Lvl 15</option>
+                            <option value="16">Lvl 16</option>
+                            <option value="17">Lvl 17</option>
+                            <option value="18">Lvl 18</option>
+                            <option value="19">Lvl 19</option>
+                            <option value="20">Lvl 20</option>
                         </select>
                     </div>
+                    <select id="npcSubclass" class="subclass-select" style="display: none; margin-top: 8px;">
+                        <option value="random">Random Subclass</option>
+                    </select>
+                    <select id="occupation" class="subclass-select" style="margin-top: 8px;" onchange="showOccupationDescription()">
+                        <option value="random">Random Occupation</option>
+                        <optgroup label="Trades & Crafts">
+                            <option value="blacksmith">Blacksmith</option>
+                            <option value="carpenter">Carpenter</option>
+                            <option value="mason">Mason</option>
+                            <option value="potter">Potter</option>
+                            <option value="weaver">Weaver</option>
+                            <option value="tailor">Tailor</option>
+                            <option value="cobbler">Cobbler</option>
+                            <option value="tanner">Tanner</option>
+                            <option value="jeweler">Jeweler</option>
+                            <option value="glassblower">Glassblower</option>
+                        </optgroup>
+                        <optgroup label="Food & Drink">
+                            <option value="baker">Baker</option>
+                            <option value="butcher">Butcher</option>
+                            <option value="brewer">Brewer</option>
+                            <option value="cook">Cook</option>
+                            <option value="innkeeper">Innkeeper</option>
+                            <option value="vintner">Vintner</option>
+                        </optgroup>
+                        <optgroup label="Agriculture & Nature">
+                            <option value="farmer">Farmer</option>
+                            <option value="shepherd">Shepherd</option>
+                            <option value="fisherman">Fisherman</option>
+                            <option value="hunter">Hunter</option>
+                            <option value="trapper">Trapper</option>
+                            <option value="woodcutter">Woodcutter</option>
+                            <option value="herbalist">Herbalist</option>
+                            <option value="beekeeper">Beekeeper</option>
+                            <option value="miller">Miller</option>
+                        </optgroup>
+                        <optgroup label="Commerce">
+                            <option value="merchant">Merchant</option>
+                            <option value="peddler">Peddler</option>
+                            <option value="shopkeeper">Shopkeeper</option>
+                            <option value="banker">Banker</option>
+                            <option value="trader">Trader</option>
+                        </optgroup>
+                        <optgroup label="Service">
+                            <option value="servant">Servant</option>
+                            <option value="stablehand">Stablehand</option>
+                            <option value="barkeep">Barkeep</option>
+                            <option value="courier">Courier</option>
+                            <option value="gravedigger">Gravedigger</option>
+                        </optgroup>
+                        <optgroup label="Scholarly">
+                            <option value="scholar">Scholar</option>
+                            <option value="scribe">Scribe</option>
+                            <option value="librarian">Librarian</option>
+                            <option value="tutor">Tutor</option>
+                            <option value="cartographer">Cartographer</option>
+                        </optgroup>
+                        <optgroup label="Religious">
+                            <option value="acolyte">Acolyte</option>
+                            <option value="priest">Priest</option>
+                            <option value="monk_civilian">Monk (Religious)</option>
+                            <option value="gravewarden">Gravewarden</option>
+                        </optgroup>
+                        <optgroup label="Entertainment">
+                            <option value="entertainer">Entertainer</option>
+                            <option value="musician">Musician</option>
+                            <option value="actor">Actor</option>
+                            <option value="jester">Jester</option>
+                            <option value="storyteller">Storyteller</option>
+                        </optgroup>
+                        <optgroup label="Medical">
+                            <option value="healer">Healer</option>
+                            <option value="midwife">Midwife</option>
+                            <option value="apothecary">Apothecary</option>
+                        </optgroup>
+                        <optgroup label="Military & Guard">
+                            <option value="soldier">Soldier</option>
+                            <option value="guard">Guard</option>
+                            <option value="watchman">Watchman</option>
+                            <option value="bouncer">Bouncer</option>
+                        </optgroup>
+                        <optgroup label="Maritime">
+                            <option value="sailor">Sailor</option>
+                            <option value="dockworker">Dockworker</option>
+                            <option value="shipwright">Shipwright</option>
+                        </optgroup>
+                        <optgroup label="Nobility & Governance">
+                            <option value="noble">Noble</option>
+                            <option value="advisor">Advisor</option>
+                            <option value="herald">Herald</option>
+                            <option value="diplomat">Diplomat</option>
+                            <option value="tax_collector">Tax Collector</option>
+                        </optgroup>
+                        <optgroup label="Criminal">
+                            <option value="pickpocket">Pickpocket</option>
+                            <option value="smuggler">Smuggler</option>
+                            <option value="fence">Fence</option>
+                            <option value="beggar">Beggar</option>
+                        </optgroup>
+                        <optgroup label="Labor">
+                            <option value="miner">Miner</option>
+                            <option value="ratcatcher">Ratcatcher</option>
+                            <option value="lamplighter">Lamplighter</option>
+                            <option value="chimneysweep">Chimney Sweep</option>
+                        </optgroup>
+                    </select>
                 </div>
+                <div id="occupationDescription" class="occupation-description hidden"></div>
                 <div id="classDescription" class="class-description hidden"></div>
                 
                 <!-- Multiclass Section -->
@@ -1843,8 +2020,6 @@
                         <i class="fa-solid fa-plus"></i> Add Class
                     </button>
                 </div>
-                
-                <div id="occupationDescription" class="occupation-description hidden"></div>
 
                 <!-- Row 3: Age & Alignment -->
                 <div class="form-row">
@@ -1874,13 +2049,6 @@
                             <option value="neutral evil">Neutral Evil</option>
                             <option value="chaotic evil">Chaotic Evil</option>
                         </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="includeBackstory" checked>
-                        <label for="includeBackstory" style="margin: 0;"><i class="fa-solid fa-scroll"></i> Include Backstory</label>
                     </div>
                 </div>
 
@@ -2436,8 +2604,9 @@
 
         // Civilian occupations/jobs (affects backstory and roleplay, not combat)
         const occupations = {
-            // Special age-based
+            // Special
             infant: { category: 'special', skills: [], equipment: ['Swaddling clothes', 'Rattle'], description: 'A baby, too young for any profession' },
+            adventurer: { category: 'special', skills: [], equipment: [], description: 'A professional adventurer, explorer, or hero-for-hire' },
             
             // Trades & Crafts
             blacksmith: { category: 'trade', skills: ['Athletics'], equipment: ['Leather apron', 'Smith\'s tools', 'Hammer'], description: 'Forges metal into tools, weapons, and armor' },
@@ -3682,9 +3851,48 @@
             'messenger': { name: 'Satchel', damage: '1d2', damageType: 'bludgeoning', description: 'A leather bag swung as a weapon.' },
             'guard': { name: 'Truncheon', damage: '1d2', damageType: 'bludgeoning', description: 'A short wooden club for keeping order.' },
             'sailor': { name: 'Belaying Pin', damage: '1d2', damageType: 'bludgeoning', description: 'A wooden pin used to secure ropes on ships.' },
-            'rat-catcher': { name: 'Rat Stick', damage: '1d2', damageType: 'bludgeoning', description: 'A club with nails for catching vermin.' },
+            'ratcatcher': { name: 'Rat Stick', damage: '1d2', damageType: 'bludgeoning', description: 'A club with nails for catching vermin.' },
             'urchin': { name: 'Broken Glass', damage: '1d2', damageType: 'slashing', description: 'A shard of broken glass wrapped in cloth.' },
             'laborer': { name: 'Crowbar', damage: '1d2', damageType: 'bludgeoning', description: 'An iron bar for prying.' },
+            'mason': { name: 'Stone Chisel', damage: '1d2', damageType: 'piercing', description: 'A sharp metal tool for carving stone.' },
+            'jeweler': { name: 'Gem Cutter', damage: '1d2', damageType: 'slashing', description: 'A small blade used to cut and shape gems.' },
+            'glassblower': { name: 'Hot Glass Rod', damage: '1d2', damageType: 'bludgeoning', description: 'A metal rod still warm from the furnace.' },
+            'vintner': { name: 'Wine Bottle', damage: '1d2', damageType: 'bludgeoning', description: 'A heavy glass bottle, full or empty.' },
+            'trapper': { name: 'Snare Wire', damage: '1d2', damageType: 'slashing', description: 'A length of sharp wire used for traps.' },
+            'beekeeper': { name: 'Hive Tool', damage: '1d2', damageType: 'bludgeoning', description: 'A flat metal tool for prying open beehives.' },
+            'miller': { name: 'Grain Flail', damage: '1d2', damageType: 'bludgeoning', description: 'A threshing tool with a swinging head.' },
+            'peddler': { name: 'Walking Stick', damage: '1d2', damageType: 'bludgeoning', description: 'A sturdy stick for long journeys on foot.' },
+            'shopkeeper': { name: 'Measuring Rod', damage: '1d2', damageType: 'bludgeoning', description: 'A wooden rod marked for measuring goods.' },
+            'banker': { name: 'Coin Bag', damage: '1d2', damageType: 'bludgeoning', description: 'A heavy pouch filled with coins.' },
+            'trader': { name: 'Scale Weight', damage: '1d2', damageType: 'bludgeoning', description: 'A dense metal weight used for measuring.' },
+            'barkeep': { name: 'Tankard', damage: '1d2', damageType: 'bludgeoning', description: 'A heavy drinking vessel, preferably pewter.' },
+            'courier': { name: 'Message Tube', damage: '1d2', damageType: 'bludgeoning', description: 'A sturdy metal tube for carrying scrolls.' },
+            'librarian': { name: 'Heavy Bookend', damage: '1d2', damageType: 'bludgeoning', description: 'A dense metal or stone bookend.' },
+            'tutor': { name: 'Wooden Ruler', damage: '1d2', damageType: 'bludgeoning', description: 'A rigid wooden measuring stick.' },
+            'cartographer': { name: 'Drawing Compass', damage: '1d2', damageType: 'piercing', description: 'A sharp-pointed compass for mapmaking.' },
+            'acolyte': { name: 'Candlestick', damage: '1d2', damageType: 'bludgeoning', description: 'A heavy metal candle holder.' },
+            'priest': { name: 'Censer', damage: '1d2', damageType: 'bludgeoning', description: 'A swinging metal incense burner on a chain.' },
+            'monk_civilian': { name: 'Prayer Beads', damage: '1d2', damageType: 'bludgeoning', description: 'A string of heavy wooden or stone beads.' },
+            'gravewarden': { name: 'Grave Stake', damage: '1d2', damageType: 'piercing', description: 'A wooden stake for marking or consecrating graves.' },
+            'entertainer': { name: 'Prop Sword', damage: '1d2', damageType: 'bludgeoning', description: 'A wooden sword used in performances.' },
+            'musician': { name: 'Lute', damage: '1d2', damageType: 'bludgeoning', description: 'A stringed instrument swung in desperation.' },
+            'actor': { name: 'Stage Prop', damage: '1d2', damageType: 'bludgeoning', description: 'A theatrical prop repurposed for defense.' },
+            'jester': { name: 'Marotte', damage: '1d2', damageType: 'bludgeoning', description: 'A fool\'s scepter topped with a carved head.' },
+            'storyteller': { name: 'Walking Cane', damage: '1d2', damageType: 'bludgeoning', description: 'A carved cane used for dramatic gestures.' },
+            'healer': { name: 'Bone Saw', damage: '1d2', damageType: 'slashing', description: 'A serrated surgical saw.' },
+            'midwife': { name: 'Swaddling Rod', damage: '1d2', damageType: 'bludgeoning', description: 'A smooth wooden rod for wrapping linens.' },
+            'apothecary': { name: 'Mortar', damage: '1d2', damageType: 'bludgeoning', description: 'A heavy stone bowl for grinding ingredients.' },
+            'soldier': { name: 'Training Sword', damage: '1d2', damageType: 'bludgeoning', description: 'A wooden practice weapon.' },
+            'watchman': { name: 'Night Stick', damage: '1d2', damageType: 'bludgeoning', description: 'A short wooden club for patrols.' },
+            'bouncer': { name: 'Brass Knuckles', damage: '1d2', damageType: 'bludgeoning', description: 'Metal rings worn over the fist.' },
+            'shipwright': { name: 'Caulking Mallet', damage: '1d2', damageType: 'bludgeoning', description: 'A heavy mallet for sealing ship hulls.' },
+            'advisor': { name: 'Weighted Cane', damage: '1d2', damageType: 'bludgeoning', description: 'An elegant cane with a heavy metal head.' },
+            'herald': { name: 'Standard Pole', damage: '1d2', damageType: 'bludgeoning', description: 'A long pole for carrying banners.' },
+            'diplomat': { name: 'Letter Opener', damage: '1d2', damageType: 'piercing', description: 'An ornate blade for opening correspondence.' },
+            'tax_collector': { name: 'Lockbox', damage: '1d2', damageType: 'bludgeoning', description: 'A heavy metal box for collecting coins.' },
+            'pickpocket': { name: 'Shiv', damage: '1d2', damageType: 'piercing', description: 'A sharpened piece of metal or bone.' },
+            'smuggler': { name: 'Weighted Sap', damage: '1d2', damageType: 'bludgeoning', description: 'A leather pouch filled with lead shot.' },
+            'fence': { name: 'Hidden Blade', damage: '1d2', damageType: 'piercing', description: 'A small knife concealed in clothing.' },
             'default': { name: 'Improvised Club', damage: '1d2', damageType: 'bludgeoning', description: 'A makeshift weapon grabbed in desperation.' }
         };
 
@@ -3706,8 +3914,52 @@
             commoner: [] // Uses occupation weapon
         };
 
+        // Racial natural weapons
+        const racialNaturalWeapons = {
+            'aarakocra': { name: 'Talons', damage: '1d4', damageType: 'slashing', description: 'Sharp talons on your feet that can be used as natural weapons.' },
+            'centaur': { name: 'Hooves', damage: '1d4', damageType: 'bludgeoning', usesStr: true, description: 'Powerful hooves that can deliver crushing blows.' },
+            'dhampir': { name: 'Vampiric Bite', damage: '1d4', damageType: 'piercing', usesConOrStr: true, description: 'Fanged bite that can drain vitality from a target.' },
+            'leonin': { name: 'Claws', damage: '1d4', damageType: 'slashing', description: 'Retractable claws ideal for rending attacks.' },
+            'lizardfolk': { name: 'Bite', damage: '1d6', damageType: 'piercing', description: 'Powerful jaws lined with sharp teeth.' },
+            'minotaur': { name: 'Horns', damage: '1d6', damageType: 'piercing', description: 'Sharp horns that can gore enemies.' },
+            'tabaxi': { name: "Cat's Claws", damage: '1d4', damageType: 'slashing', description: 'Sharp claws that can also aid in climbing.' },
+            'tortle': { name: 'Claws', damage: '1d4', damageType: 'slashing', description: 'Natural claws on hands and feet.' }
+        };
+
+        // Get racial natural weapon for a race
+        function getRacialNaturalWeapon(race, modifiers) {
+            const raceLower = race.toLowerCase();
+            const weaponData = racialNaturalWeapons[raceLower];
+            
+            if (!weaponData) return null;
+            
+            // Determine which modifier to use for damage
+            let damageModifier = modifiers.str; // Default to STR
+            if (weaponData.usesConOrStr) {
+                damageModifier = Math.max(modifiers.con, modifiers.str);
+            }
+            
+            return {
+                ...weaponData,
+                id: 'racial-' + raceLower,
+                type: 'natural',
+                category: 'melee',
+                weight: 0,
+                properties: [],
+                cost: '0 gp',
+                isProficient: true,
+                damageBonus: damageModifier,
+                attackBonus: modifiers.str // Natural weapons typically use STR for attack
+            };
+        }
+
         // Get weapons a character is proficient with
         function getCharacterWeapons(className, occupation = null) {
+            // Infants get no additional weapons - Tiny Fists is shown as their natural weapon
+            if (occupation === 'infant') {
+                return [];
+            }
+            
             // Handle commoners with occupation-based weapons
             if (className === 'commoner' || !className) {
                 const occupationKey = occupation ? occupation.toLowerCase().replace(/\s+/g, '-') : 'default';
@@ -3815,6 +4067,51 @@
             } else {
                 return modifiers.str;
             }
+        }
+
+        // Get unarmed strike stats based on class and level
+        function getUnarmedStrike(className, level, modifiers, proficiencyBonus) {
+            // Monk Martial Arts die progression
+            const monkMartialArtsDie = {
+                1: '1d4', 2: '1d4', 3: '1d4', 4: '1d4',
+                5: '1d6', 6: '1d6', 7: '1d6', 8: '1d6', 9: '1d6', 10: '1d6',
+                11: '1d8', 12: '1d8', 13: '1d8', 14: '1d8', 15: '1d8', 16: '1d8',
+                17: '1d10', 18: '1d10', 19: '1d10', 20: '1d10'
+            };
+
+            const isMonk = className === 'monk';
+            
+            // Monks can use DEX for unarmed strikes (Martial Arts)
+            const abilityMod = isMonk ? Math.max(modifiers.str, modifiers.dex) : modifiers.str;
+            
+            // Damage: Monks use Martial Arts die, others deal 1 + STR mod
+            let damage, damageBonus;
+            if (isMonk) {
+                damage = monkMartialArtsDie[level] || '1d4';
+                damageBonus = abilityMod;
+            } else {
+                damage = '1';
+                damageBonus = modifiers.str;
+            }
+
+            return {
+                id: 'unarmed-strike',
+                name: 'Unarmed Strike',
+                type: 'natural',
+                category: 'melee',
+                damage: damage,
+                damageType: 'bludgeoning',
+                weight: 0,
+                properties: isMonk ? ['finesse', 'monk weapon'] : [],
+                cost: '—',
+                description: isMonk 
+                    ? 'Martial Arts allows you to use Dexterity instead of Strength and roll your Martial Arts die for damage.'
+                    : 'A punch, kick, head-butt, or similar forceful blow.',
+                isProficient: true,
+                isUnarmed: true, // Flag to prevent removal
+                attackBonus: abilityMod + proficiencyBonus,
+                damageBonus: damageBonus
+            };
         }
 
         // Spellcasting rules for each class
@@ -4484,10 +4781,7 @@
             'illusory-dragon': { name: 'Illusory Dragon', level: 8, school: 'illusion', castingTime: '1 action', range: '120 feet', components: { v: false, s: true, m: null }, duration: 'Concentration, up to 1 minute', concentration: true, ritual: false, classes: ['wizard'], description: 'By gathering threads of shadow material from the Shadowfell, you create a Huge shadowy dragon in an unoccupied space that you can see within range.', source: 'XGtE' },
             'maddening-darkness': { name: 'Maddening Darkness', level: 8, school: 'evocation', castingTime: '1 action', range: '150 feet', components: { v: true, s: true, m: 'A drop of pitch mixed with a drop of mercury' }, duration: 'Concentration, up to 10 minutes', concentration: true, ritual: false, classes: ['warlock', 'wizard'], description: 'Magical darkness spreads from a point you choose within range to fill a 60-foot-radius sphere until the spell ends.', source: 'XGtE' },
             'mighty-fortress': { name: 'Mighty Fortress', level: 8, school: 'conjuration', castingTime: '1 minute', range: '1 mile', components: { v: true, s: true, m: 'A diamond worth at least 500 gp, which the spell consumes' }, duration: 'Instantaneous', concentration: false, ritual: false, classes: ['wizard'], description: 'A fortress of stone erupts from a square area of ground of your choice that you can see within range.', source: 'XGtE' },
-            'reality-break': { name: 'Reality Break', level: 8, school: 'conjuration', castingTime: '1 action', range: '60 feet', components: { v: true, s: true, m: 'A crystal prism' }, duration: 'Concentration, up to 1 minute', concentration: true, ritual: false, classes: ['wizard'], description: 'You shatter the barriers between realities and timelines, thrusting a creature into turmoil and
-
-
- potential oblivion.', source: 'EGtW' },
+            'reality-break': { name: 'Reality Break', level: 8, school: 'conjuration', castingTime: '1 action', range: '60 feet', components: { v: true, s: true, m: 'A crystal prism' }, duration: 'Concentration, up to 1 minute', concentration: true, ritual: false, classes: ['wizard'], description: 'You shatter the barriers between realities and timelines, thrusting a creature into turmoil and potential oblivion.', source: 'EGtW' },
             'dark-star': { name: 'Dark Star', level: 8, school: 'evocation', castingTime: '1 action', range: '150 feet', components: { v: true, s: true, m: 'A shard of onyx and a drop of the caster\'s blood, both of which the spell consumes' }, duration: 'Concentration, up to 1 minute', concentration: true, ritual: false, classes: ['wizard'], description: 'This spell creates a sphere centered on a point you choose within range. The sphere can have a radius of up to 40 feet. The area within this sphere is filled with magical darkness.', source: 'EGtW' },
 
             // ========== ADDITIONAL 9TH LEVEL SPELLS ==========
@@ -4880,8 +5174,6 @@
             const ageCategory = document.getElementById('age').value;
             const gender = document.getElementById('gender').value;
             const alignment = document.getElementById('alignment').value;
-            const includeBackstory = document.getElementById('includeBackstory').checked;
-
             // Determine values, respecting locks (use locked value if available)
             let selectedRace, selectedClass, selectedOccupation, selectedGender, selectedAlignment, age;
             let selectedAgeCategory;
@@ -4911,9 +5203,11 @@
             // Infant is NOT allowed if:
             // - Class is explicitly set to non-commoner (not random, not commoner)
             // - Occupation is explicitly set to non-infant (not random, not infant)
+            // - Any multiclasses are set (adventurer training means no infants)
             const classBlocksInfant = npcClass !== 'random' && npcClass !== 'commoner';
             const occupationBlocksInfant = occupation !== 'random' && occupation !== 'infant';
-            const infantAllowed = !classBlocksInfant && !occupationBlocksInfant;
+            const hasMulticlasses = multiclasses.length > 0;
+            const infantAllowed = !classBlocksInfant && !occupationBlocksInfant && !hasMulticlasses;
 
             // Age - locked or generate new (determine before class and occupation)
             if (lockStates.age && currentNPC) {
@@ -4958,7 +5252,7 @@
             
             if (selectedAgeCategory === 'infant') {
                 selectedClass = 'commoner';
-                characterClasses = [{ className: 'commoner', level: 1 }];
+                characterClasses = [{ className: 'commoner', level: 0 }];
             } else if (lockStates.npcClass && currentNPC && currentNPC.characterClasses) {
                 characterClasses = [...currentNPC.characterClasses];
                 selectedClass = characterClasses[0]?.className || 'commoner';
@@ -4967,7 +5261,20 @@
                 selectedClass = npcClass === 'random' ? randomChoice(adventurerClasses) : npcClass;
                 
                 if (selectedClass === 'commoner') {
-                    characterClasses = [{ className: 'commoner', level: 1, subclass: null }];
+                    characterClasses = [{ className: 'commoner', level: 0, subclass: null }];
+                    
+                    // Add multiclasses for commoners (retired adventurers, etc.)
+                    multiclasses.forEach(mc => {
+                        const mcSubclassData = subclasses[mc.className];
+                        let mcSubclass = mc.subclass;
+                        // If random or not set, pick a random subclass if level is high enough
+                        if ((!mcSubclass || mcSubclass === 'random') && mcSubclassData && mc.level >= mcSubclassData.level) {
+                            mcSubclass = randomChoice(mcSubclassData.options).id;
+                        } else if (!mcSubclassData || mc.level < mcSubclassData.level) {
+                            mcSubclass = null;
+                        }
+                        characterClasses.push({ className: mc.className, level: mc.level, subclass: mcSubclass });
+                    });
                 } else {
                     // Get main class level from form
                     const mainLevel = parseInt(document.getElementById('npcClassLevel').value) || 1;
@@ -4989,9 +5296,12 @@
                     // Add multiclasses (with random subclasses)
                     multiclasses.forEach(mc => {
                         const mcSubclassData = subclasses[mc.className];
-                        let mcSubclass = null;
-                        if (mcSubclassData && mc.level >= mcSubclassData.level) {
+                        let mcSubclass = mc.subclass;
+                        // If random or not set, pick a random subclass if level is high enough
+                        if ((!mcSubclass || mcSubclass === 'random') && mcSubclassData && mc.level >= mcSubclassData.level) {
                             mcSubclass = randomChoice(mcSubclassData.options).id;
+                        } else if (!mcSubclassData || mc.level < mcSubclassData.level) {
+                            mcSubclass = null;
                         }
                         characterClasses.push({ className: mc.className, level: mc.level, subclass: mcSubclass });
                     });
@@ -5000,17 +5310,23 @@
 
             // Occupation - locked or generate new
             // Infants are always locked to "infant" occupation
+            // Characters with Commoner class get an occupation, pure adventurers use "adventurer"
+            const hasCommoner = characterClasses.some(cc => cc.className === 'commoner');
+            
             if (selectedAgeCategory === 'infant') {
                 selectedOccupation = 'infant';
+            } else if (!hasCommoner) {
+                // Pure adventurers use "adventurer" as their occupation
+                selectedOccupation = 'adventurer';
             } else if (lockStates.occupation && currentNPC) {
                 selectedOccupation = currentNPC.occupation;
                 // If previously was infant but now isn't, regenerate occupation
                 if (selectedOccupation === 'infant') {
-                    const validOccupations = Object.keys(occupations).filter(o => o !== 'infant');
+                    const validOccupations = Object.keys(occupations).filter(o => o !== 'infant' && o !== 'adventurer');
                     selectedOccupation = occupation === 'random' ? randomChoice(validOccupations) : occupation;
                 }
             } else {
-                const validOccupations = Object.keys(occupations).filter(o => o !== 'infant');
+                const validOccupations = Object.keys(occupations).filter(o => o !== 'infant' && o !== 'adventurer');
                 selectedOccupation = occupation === 'random' ? randomChoice(validOccupations) : occupation;
             }
 
@@ -5034,11 +5350,14 @@
                 abilities = { ...currentNPC.abilities };
                 modifiers = { ...currentNPC.modifiers };
             } else {
-                // Generate 6 ability scores using 4d6 drop lowest for adventurers, 3d6 for commoners
+                // Generate 6 ability scores: 1d4 for infants, 4d4 drop lowest for pure commoners, 4d6 drop lowest for adventurers
                 const rawScores = [];
-                const isCommoner = selectedClass === 'commoner';
+                const isInfant = selectedAgeCategory === 'infant';
+                // Use adventurer rolls if they have any adventurer classes (including multiclass)
+                const hasAdventurerClass = characterClasses.some(cc => cc.className !== 'commoner');
+                const isPureCommoner = selectedClass === 'commoner' && !hasAdventurerClass;
                 for (let i = 0; i < 6; i++) {
-                    rawScores.push(isCommoner ? rollCommonerScore() : rollAbilityScore());
+                    rawScores.push(isInfant ? rollInfantScore() : (isPureCommoner ? rollCommonerScore() : rollAbilityScore()));
                 }
                 rawScores.sort((a, b) => b - a);
                 
@@ -5134,27 +5453,32 @@
                 equipment = occData.equipment || [];
             }
 
-            // Calculate total level and proficiency bonus
-            const totalLevel = characterClasses.reduce((sum, cc) => sum + cc.level, 0);
+            // Calculate total level and proficiency bonus (commoner is level 0, doesn't count)
+            const totalLevel = characterClasses.reduce((sum, cc) => cc.className === 'commoner' ? sum : sum + cc.level, 0) || 1;
             const proficiencyBonus = getProficiencyBonus(totalLevel);
 
-            // Calculate hit points from all classes
+            // Calculate hit points from all classes (level 0 classes like commoner don't contribute)
             const hitDieMap = { 'd4': 4, 'd6': 6, 'd8': 8, 'd10': 10, 'd12': 12 };
             let hitPoints = 0;
             let hitDiceStr = [];
+            let firstAdventurerClass = true;
             
             characterClasses.forEach((cc, index) => {
+                // Skip level 0 classes (like commoner)
+                if (cc.level <= 0) return;
+                
                 const cd = classes[cc.className];
                 const hitDieMax = hitDieMap[cd.hitDie] || 4;
                 const hitDieAvg = Math.floor(hitDieMax / 2) + 1;
                 
-                if (index === 0) {
-                    // First class, first level: max hit die + CON
+                if (firstAdventurerClass) {
+                    // First adventurer class, first level: max hit die + CON
                     hitPoints += hitDieMax + modifiers.con;
                     // Additional levels of first class: average + CON
                     for (let lvl = 2; lvl <= cc.level; lvl++) {
                         hitPoints += hitDieAvg + modifiers.con;
                     }
+                    firstAdventurerClass = false;
                 } else {
                     // Multiclass levels: average + CON per level
                     for (let lvl = 1; lvl <= cc.level; lvl++) {
@@ -5162,25 +5486,26 @@
                     }
                 }
                 
-                if (cc.level > 0) {
-                    hitDiceStr.push(`${cc.level}${cd.hitDie}`);
-                }
+                hitDiceStr.push(`${cc.level}${cd.hitDie}`);
             });
             
-            // Ensure minimum 1 HP
-            hitPoints = Math.max(1, hitPoints);
+            // For pure commoners (level 0), give them 1 HP + CON modifier
+            if (hitPoints === 0) {
+                hitPoints = Math.max(1, 1 + modifiers.con);
+            } else {
+                // Ensure minimum 1 HP
+                hitPoints = Math.max(1, hitPoints);
+            }
             
             // Get saving throws from first (primary) class only
             const primaryClassData = classes[characterClasses[0]?.className] || classData;
 
-            // Backstory - locked or generate new
+            // Backstory - locked or generate new (always generated, checkbox only affects PDF export)
             let backstory;
             if (lockStates.backstory && currentNPC && currentNPC.backstory) {
                 backstory = currentNPC.backstory;
-            } else if (includeBackstory) {
-                backstory = generateBackstory(fullName, selectedRace, selectedOccupation, age, selectedAlignment, selectedAgeCategory, selectedGender, characterClasses);
             } else {
-                backstory = '';
+                backstory = generateBackstory(fullName, selectedRace, selectedOccupation, age, selectedAlignment, selectedAgeCategory, selectedGender, characterClasses);
             }
 
             // Get race data for display
@@ -5275,14 +5600,21 @@
             return 'elderly';
         }
         
-        // Roll 3d6 for commoner stats (lower average than adventurers)
+        // Roll 4d4 drop lowest for commoner stats (lower average than adventurers)
         function rollCommonerScore() {
             const rolls = [
-                Math.floor(Math.random() * 6) + 1,
-                Math.floor(Math.random() * 6) + 1,
-                Math.floor(Math.random() * 6) + 1
+                Math.floor(Math.random() * 4) + 1,
+                Math.floor(Math.random() * 4) + 1,
+                Math.floor(Math.random() * 4) + 1,
+                Math.floor(Math.random() * 4) + 1
             ];
-            return rolls.reduce((a, b) => a + b, 0);
+            rolls.sort((a, b) => b - a);
+            return rolls[0] + rolls[1] + rolls[2]; // Drop lowest
+        }
+        
+        // Roll 1d4 for infant stats (very low scores)
+        function rollInfantScore() {
+            return Math.floor(Math.random() * 4) + 1;
         }
 
         // Race-specific lore for backstory generation (D&D 5e accurate)
@@ -5768,17 +6100,59 @@
             const ageOf = age === 0 ? 'newborn' : `${age} ${yearWord}`;
             const justBorn = age === 0 ? 'recently' : `just ${age} ${yearWord} ago`;
             
-            // Get subclass backstory hook if available
-            let subclassHook = '';
-            if (characterClasses && characterClasses.length > 0) {
-                const primaryClass = characterClasses[0];
-                if (primaryClass.subclass && subclasses[primaryClass.className]) {
-                    const subclassData = subclasses[primaryClass.className];
-                    const subclassOption = subclassData.options.find(o => o.id === primaryClass.subclass);
-                    if (subclassOption) {
-                        subclassHook = subclassOption.backstoryHook;
+            // Check for commoner with adventurer classes (various scenarios)
+            const hasCommoner = characterClasses?.some(cc => cc.className === 'commoner');
+            const adventurerClasses = characterClasses?.filter(cc => cc.className !== 'commoner') || [];
+            const hasAdventurerTraining = hasCommoner && adventurerClasses.length > 0;
+            
+            // Build adventurer class description and scenario for commoners with training
+            let adventurerDescription = '';
+            let adventurerScenario = '';
+            if (hasAdventurerTraining) {
+                const classDescriptions = adventurerClasses.map(cc => {
+                    let desc = capitalize(cc.className);
+                    if (cc.subclass && subclasses[cc.className]) {
+                        const subclassData = subclasses[cc.className];
+                        const subclassOption = subclassData.options.find(o => o.id === cc.subclass);
+                        if (subclassOption) {
+                            desc = subclassOption.name + ' ' + desc;
+                        }
                     }
-                }
+                    return desc;
+                });
+                adventurerDescription = classDescriptions.join(' and ');
+                
+                // Random scenario for why a trained adventurer is living as a commoner
+                const scenarios = [
+                    `a retired ${adventurerDescription} who now lives a quieter life`,
+                    `secretly a trained ${adventurerDescription}, hiding ${possessive} abilities from the world`,
+                    `a former ${adventurerDescription} in hiding, avoiding those who might recognize ${object}`,
+                    `an undercover ${adventurerDescription}, using ${possessive} cover as a ${formattedOccupation} to gather information`,
+                    `once a promising ${adventurerDescription}, but trauma has led ${object} to abandon that life`,
+                    `a ${adventurerDescription} who left adventuring behind after a personal loss`,
+                    `an aspiring ${adventurerDescription}, training in secret while working as a ${formattedOccupation}`,
+                    `a ${adventurerDescription} laying low after a job gone wrong`,
+                    `a former ${adventurerDescription} who found peace in the simple life of a ${formattedOccupation}`,
+                    `secretly a ${adventurerDescription}, waiting for the right moment to reveal ${possessive} true skills`
+                ];
+                adventurerScenario = randomChoice(scenarios);
+            }
+            
+            // Get subclass backstory hooks from all classes
+            let subclassHook = '';
+            let allSubclassHooks = [];
+            if (characterClasses && characterClasses.length > 0) {
+                characterClasses.forEach(cc => {
+                    if (cc.subclass && subclasses[cc.className]) {
+                        const subclassData = subclasses[cc.className];
+                        const subclassOption = subclassData.options.find(o => o.id === cc.subclass);
+                        if (subclassOption && subclassOption.backstoryHook) {
+                            allSubclassHooks.push(subclassOption.backstoryHook);
+                        }
+                    }
+                });
+                // Use primary subclass hook for templates, store all for potential use
+                subclassHook = allSubclassHooks[0] || '';
             }
             
             const backstoryTemplates = {
@@ -5796,28 +6170,52 @@
                     `${name} is a ${race} child of ${age} who grew up in ${lore.homeland}. While ${lore.childhood}, ${pronoun} dream${verbS} of one day working as a ${formattedOccupation}.`,
                     `The ${age}-year-old ${race} named ${name} is known for ${possessive} ${alignment} nature. Currently ${lore.childhood}, ${pronoun} show${verbS} promise for a future as a ${formattedOccupation}.`
                 ],
-                'young-adult': [
+                'young-adult': hasAdventurerTraining ? [
+                    `${name} is a ${age}-year-old ${race} from ${lore.homeland} who works as a ${formattedOccupation}, while secretly being ${adventurerScenario}. ${Pronoun} ${lore.culture}, balancing ${possessive} ambitions carefully.`,
+                    `At ${age}, ${name} appears to be a simple ${formattedOccupation}, but is ${adventurerScenario}. This young ${race} from ${lore.homeland} ${lore.culture}, hiding ${possessive} true potential.`,
+                    `${name} is a young ${race} of ${age} ${yearWord}, ${adventurerScenario} while working as a ${formattedOccupation}. ${Possessive} ${alignment} values guide both paths ${pronoun} walk${verbS}.`,
+                    `Fresh from ${lore.homeland}, the ${age}-year-old ${name} maintains a cover as a ${formattedOccupation}. In reality, ${pronoun} ${gender === 'non-binary' ? 'are' : 'is'} ${adventurerScenario}, full of untapped potential.`,
+                    `${name}, a ${age}-year-old ${race}, lives a double life as ${formattedOccupation} and ${adventurerScenario}. ${Pronoun} ${lore.culture}, but ${possessive} true journey is just beginning.`
+                ] : [
                     `${name} is a ${age}-year-old ${race} from ${lore.homeland} who recently began training as a ${formattedOccupation}${subclassHook ? `, ${subclassHook}` : ''}. ${Pronoun} ${lore.culture}, and face${verbS} the challenge of ${lore.challenge}.`,
                     `At ${age}, ${name} has just left ${lore.homeland} to pursue a career as a ${formattedOccupation}. As a young ${race}${subclassHook ? ` ${subclassHook}` : ''} who ${lore.culture}, ${pronoun} approach${verbS === 's' ? 'es' : ''} ${possessive} new life with ${alignment} determination.`,
                     `${name} is a young ${race} of ${age} ${yearWord}, newly apprenticed to a ${formattedOccupation}${subclassHook ? ` ${subclassHook}` : ''}. Having grown up ${lore.childhood}, ${pronoun} now face${verbS} ${lore.challenge}.`,
                     `Fresh from ${lore.homeland}, the ${age}-year-old ${name}${subclassHook ? ` ${subclassHook}` : ''} ${lore.culture}. This young ${race} ${hasHave} chosen the path of a ${formattedOccupation}, bringing ${possessive} ${alignment} values.`,
                     `${name}, a ${age}-year-old ${race}${subclassHook ? ` ${subclassHook}` : ''}, still honors ${lore.tradition} while training as a ${formattedOccupation}. ${Pronoun} ${lore.culture} and ${hasHave} much to prove.`
                 ],
-                'adult': [
+                'adult': hasAdventurerTraining ? [
+                    `${name} is a ${race} ${formattedOccupation} of ${age} ${yearWord} from ${lore.homeland}, but is also ${adventurerScenario}. ${Pronoun} ${lore.culture}, balancing ${possessive} dual life with ${alignment} integrity.`,
+                    `At ${age} ${yearWord} old, ${name} works as a ${formattedOccupation}, though ${pronoun} ${gender === 'non-binary' ? 'are' : 'is'} ${adventurerScenario}. This ${race} from ${lore.homeland} ${lore.culture}, keeping ${possessive} past close to ${possessive} chest.`,
+                    `${name}, a ${race} of ${age}, appears to be a simple ${formattedOccupation}. In truth, ${pronoun} ${gender === 'non-binary' ? 'are' : 'is'} ${adventurerScenario}. Few know of ${possessive} ${alignment} convictions or true capabilities.`,
+                    `The ${age}-year-old ${race} known as ${name} serves as a ${formattedOccupation} in ${lore.homeland}. However, ${pronoun} ${gender === 'non-binary' ? 'are' : 'is'} ${adventurerScenario}, and ${possessive} skills run far deeper than most realize.`,
+                    `${name} lives as a ${formattedOccupation} at ${age}. This ${race} from ${lore.homeland} is ${adventurerScenario}, carrying ${possessive} ${alignment} values quietly while ${lore.culture}.`
+                ] : [
                     `${name} is a ${race} ${formattedOccupation} of ${age} ${yearWord} from ${lore.homeland}${subclassHook ? `, ${subclassHook}` : ''}. ${Pronoun} ${lore.culture}, and ${hasHave} learned to navigate ${lore.challenge}. ${Possessive} ${alignment} reputation is well-established.`,
                     `At ${age} ${yearWord} old, ${name} has established ${reflexive} as a capable ${formattedOccupation}${subclassHook ? ` ${subclassHook}` : ''}. This ${race} from ${lore.homeland} ${lore.culture}, while still honoring ${lore.tradition}.`,
                     `${name}, a ${race} of ${age}${subclassHook ? ` ${subclassHook}` : ''}, has spent years honing ${possessive} craft as a ${formattedOccupation}. Despite ${lore.challenge}, ${pronoun} ${hasHave} built a ${alignment} reputation.`,
                     `The ${age}-year-old ${race} known as ${name} is a respected ${formattedOccupation}${subclassHook ? ` ${subclassHook}` : ''}. ${Pronoun} ${lore.culture}, never forgetting ${possessive} roots in ${lore.homeland}.`,
                     `${name} is in the prime of ${possessive} career at ${age}. This ${race} ${formattedOccupation} from ${lore.homeland}${subclassHook ? ` ${subclassHook}` : ''} ${hasHave} overcome ${lore.challenge} through ${possessive} ${alignment} approach to life.`
                 ],
-                'mature': [
+                'mature': hasAdventurerTraining ? [
+                    `${name} is a seasoned ${race} ${formattedOccupation} of ${age} ${yearWord}, though ${pronoun} ${gender === 'non-binary' ? 'are' : 'is'} ${adventurerScenario}. Originally from ${lore.homeland}, ${pronoun} ${lore.culture}, drawing on both ${possessive} adventuring experience and ${alignment} wisdom.`,
+                    `At ${age}, ${name} has seen much in ${possessive} time. On the surface a ${formattedOccupation}, ${pronoun} ${gender === 'non-binary' ? 'are' : 'is'} ${adventurerScenario}. Few suspect the depth of skill this ${race} possesses.`,
+                    `${name}, a ${race} of ${age} ${yearWord}, maintains a life as a ${formattedOccupation} while being ${adventurerScenario}. From ${lore.homeland}, ${pronoun} ${lore.culture}, though ${possessive} past holds more than ${pronoun} let${verbS} on.`,
+                    `The ${age}-year-old ${race} ${name} appears to be a simple ${formattedOccupation}, but is ${adventurerScenario}. ${Possessive} ${alignment} character guides both aspects of ${possessive} life.`,
+                    `${name} has lived ${age} ${yearWord} as both ${formattedOccupation} and ${adventurerScenario}. This ${race} from ${lore.homeland} ${lore.culture}, carrying secrets that few would believe.`
+                ] : [
                     `${name} is a seasoned ${race} ${formattedOccupation} of ${age} ${yearWord}${subclassHook ? `, ${subclassHook}` : ''}. Originally from ${lore.homeland}, ${pronoun} ${lore.culture}. Years of ${lore.challenge} have only strengthened ${possessive} ${alignment} convictions.`,
                     `At ${age}, ${name}${subclassHook ? ` ${subclassHook}` : ''} has seen much in ${possessive} time as a ${race} ${formattedOccupation}. ${Pronoun} still honors ${lore.tradition}, while mentoring younger folk with ${possessive} ${alignment} wisdom.`,
                     `${name}, a ${race} of ${age} ${yearWord}${subclassHook ? ` ${subclassHook}` : ''}, has decades of experience as a ${formattedOccupation}. From ${lore.homeland}, ${pronoun} ${lore.culture}. Many seek ${possessive} counsel on important matters.`,
                     `The ${age}-year-old ${race} ${formattedOccupation} ${name}${subclassHook ? ` ${subclassHook}` : ''} has weathered many storms since leaving ${lore.homeland}. ${Possessive} ${alignment} character has been tested by ${lore.challenge} and proven over the years.`,
                     `${name} is a master ${formattedOccupation} at ${age}${subclassHook ? `, ${subclassHook}` : ''}. As a ${race} who ${lore.culture}, ${pronoun} ${hasHave} become a ${lore.elder}, still practicing ${lore.tradition}.`
                 ],
-                'elderly': [
+                'elderly': hasAdventurerTraining ? [
+                    `${name} is a venerable ${race} of ${age} ${yearWord}, living as a ${formattedOccupation} though ${pronoun} ${gender === 'non-binary' ? 'are' : 'is'} ${adventurerScenario}. Now a ${lore.elder}, ${pronoun} guards ${possessive} secrets with ${alignment} wisdom.`,
+                    `At ${age}, ${name} has lived many lives - ${formattedOccupation} to most, but ${adventurerScenario} to those who know the truth. This ${race} ${lore.elder} ${lore.culture}, carrying stories few would believe.`,
+                    `${name}, an elderly ${race} of ${age}, appears to be a simple ${formattedOccupation}. Yet ${pronoun} ${gender === 'non-binary' ? 'are' : 'is'} ${adventurerScenario}. Even now, ${possessive} skills remain sharp.`,
+                    `The ${age}-year-old ${race} ${name} is known locally as a ${formattedOccupation}, but is secretly ${adventurerScenario}. From ${lore.homeland}, this ${lore.elder} keeps ${possessive} true nature hidden.`,
+                    `${name} has seen ${age} ${yearWord} come and go, living as ${formattedOccupation} while being ${adventurerScenario}. This ${race} ${lore.elder} ${lore.culture}, ${possessive} past a closely guarded secret.`
+                ] : [
                     `${name} is a venerable ${race} of ${age} ${yearWord}, a retired ${formattedOccupation} from ${lore.homeland}. Now a ${lore.elder}, ${pronoun} shares ${possessive} ${alignment} wisdom with the next generation.`,
                     `At ${age}, ${name} has lived a full life as a ${race} ${formattedOccupation}. ${Pronoun} ${lore.culture}, and reflect${verbS} on a lifetime of ${lore.challenge}. ${Possessive} legacy is secure.`,
                     `${name}, an elderly ${race} of ${age}, was once a renowned ${formattedOccupation}. This ${lore.elder} from ${lore.homeland} now spend${verbS} ${possessive} twilight years honoring ${lore.tradition}.`,
@@ -5907,11 +6305,15 @@
             regenerateBtn.style.display = 'flex';
 
             // Format class name nicely (showing all classes with levels and subclasses)
+            // Commoner is always level 0 and doesn't show a level number
             let className;
             if (npc.characterClasses && npc.characterClasses.length > 0) {
                 className = npc.characterClasses.map(cc => {
                     const name = cc.className === 'commoner' ? 'Commoner' : capitalize(cc.className);
-                    let displayName = cc.level > 1 || npc.characterClasses.length > 1 ? `${name} ${cc.level}` : name;
+                    // Show level for adventurer classes, but not for commoner (which is level 0)
+                    let displayName = (cc.className !== 'commoner' && (cc.level > 1 || npc.characterClasses.length > 1)) 
+                        ? `${name} ${cc.level}` 
+                        : name;
                     // Add subclass if present
                     if (cc.subclass && subclasses[cc.className]) {
                         const subclassData = subclasses[cc.className];
@@ -5966,7 +6368,8 @@
                         ${lockBtn('npcClass')}
                     </div>
 
-                    <!-- Occupation Row -->
+                    ${npc.characterClasses?.some(cc => cc.className === 'commoner') ? `
+                    <!-- Occupation Row (for characters with Commoner class) -->
                     <div class="npc-field-row">
                         <div class="npc-field-content">
                             <span class="npc-field-label">Occupation:</span>
@@ -5974,6 +6377,7 @@
                         </div>
                         ${lockBtn('occupation')}
                     </div>
+                    ` : ''}
 
                     <!-- Age Row -->
                     <div class="npc-field-row">
@@ -6082,44 +6486,154 @@
             `;
 
             // Weapons Section
-            if (npc.weapons && npc.weapons.length > 0) {
+            html += `
+                <div class="section-header" style="margin-top: 15px;">
+                    <div class="section-title" style="border-bottom: none; padding-bottom: 0;"><i class="fa-solid fa-khanda"></i> Weapons</div>
+                    ${lockBtn('weapons')}
+                </div>
+                <div class="weapons-list">
+            `;
+            
+            // Show Tiny Fists for infants, Unarmed Strike for others
+            const isInfant = npc.ageCategory === 'infant';
+            
+            if (isInfant) {
+                // Tiny Fists for infants - does 0 damage
                 html += `
-                    <div class="section-header" style="margin-top: 15px;">
-                        <div class="section-title" style="border-bottom: none; padding-bottom: 0;"><i class="fa-solid fa-khanda"></i> Weapons</div>
-                        ${lockBtn('weapons')}
+                    <div class="weapon-card" title="The flailing fists of an infant. Adorable but ineffective." style="opacity: 0.85; border-style: dashed;">
+                        <div class="weapon-header">
+                            <span class="weapon-name"><i class="fa-solid fa-hand" style="margin-right: 5px;"></i>Tiny Fists</span>
+                            <span class="weapon-type">Natural</span>
+                        </div>
+                        <div class="weapon-stats">
+                            <div class="weapon-stat">
+                                <span class="weapon-stat-label">Attack:</span>
+                                <span class="weapon-stat-value">+0</span>
+                            </div>
+                            <div class="weapon-stat">
+                                <span class="weapon-stat-label">Damage:</span>
+                                <span class="weapon-stat-value">No Damage</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="weapons-list">
                 `;
+            } else {
+                const unarmedStrike = getUnarmedStrike(
+                    npc.characterClasses?.[0]?.className || 'commoner',
+                    npc.totalLevel || 1,
+                    npc.modifiers,
+                    npc.proficiencyBonus || 2
+                );
                 
-                npc.weapons.forEach(weapon => {
-                    const attackSign = weapon.attackBonus >= 0 ? '+' : '';
-                    const damageSign = weapon.damageBonus >= 0 ? '+' : '';
-                    const damageBonus = weapon.damageBonus !== 0 ? ` ${damageSign}${weapon.damageBonus}` : '';
+                const unarmedAttackSign = unarmedStrike.attackBonus >= 0 ? '+' : '';
+                const unarmedDamageSign = unarmedStrike.damageBonus >= 0 ? '+' : '';
+                const unarmedDamageBonus = unarmedStrike.damageBonus !== 0 ? ` ${unarmedDamageSign}${unarmedStrike.damageBonus}` : '';
+                const unarmedProperties = unarmedStrike.properties && unarmedStrike.properties.length > 0 ? unarmedStrike.properties.join(', ') : '';
+                
+                html += `
+                    <div class="weapon-card" title="${unarmedStrike.description}" style="opacity: 0.85; border-style: dashed;">
+                        <div class="weapon-header">
+                            <span class="weapon-name"><i class="fa-solid fa-hand-fist" style="margin-right: 5px;"></i>${unarmedStrike.name}</span>
+                            <span class="weapon-type">Natural</span>
+                        </div>
+                        <div class="weapon-stats">
+                            <div class="weapon-stat">
+                                <span class="weapon-stat-label">Attack:</span>
+                                <span class="weapon-stat-value">${unarmedAttackSign}${unarmedStrike.attackBonus}</span>
+                            </div>
+                            <div class="weapon-stat">
+                                <span class="weapon-stat-label">Damage:</span>
+                                <span class="weapon-stat-value">${unarmedStrike.damage}${unarmedDamageBonus} ${unarmedStrike.damageType}</span>
+                            </div>
+                        </div>
+                        ${unarmedProperties ? `<div class="weapon-properties">${unarmedProperties}</div>` : ''}
+                    </div>
+                `;
+            }
+            
+            // Show racial natural weapon if applicable
+            const racialWeapon = getRacialNaturalWeapon(npc.race, npc.modifiers);
+            if (racialWeapon) {
+                // Infants deal only 1 damage with no modifier, others use normal stats
+                const racialAttackBonus = isInfant ? 0 : npc.modifiers.str + (npc.proficiencyBonus || 2);
+                const racialAttackSign = racialAttackBonus >= 0 ? '+' : '';
+                const racialDamage = isInfant ? '1' : racialWeapon.damage;
+                const racialDamageSign = racialWeapon.damageBonus >= 0 ? '+' : '';
+                const racialDamageBonus = isInfant ? '' : (racialWeapon.damageBonus !== 0 ? ` ${racialDamageSign}${racialWeapon.damageBonus}` : '');
+                
+                html += `
+                    <div class="weapon-card" title="${racialWeapon.description}" style="border-style: dashed; border-color: #8b6914;${isInfant ? ' opacity: 0.85;' : ''}">
+                        <div class="weapon-header">
+                            <span class="weapon-name"><i class="fa-solid fa-paw" style="margin-right: 5px;"></i>${racialWeapon.name}</span>
+                            <span class="weapon-type">Racial</span>
+                        </div>
+                        <div class="weapon-stats">
+                            <div class="weapon-stat">
+                                <span class="weapon-stat-label">Attack:</span>
+                                <span class="weapon-stat-value">${racialAttackSign}${racialAttackBonus}</span>
+                            </div>
+                            <div class="weapon-stat">
+                                <span class="weapon-stat-label">Damage:</span>
+                                <span class="weapon-stat-value">${racialDamage}${racialDamageBonus} ${racialWeapon.damageType}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Then show equipped weapons
+            if (npc.weapons && npc.weapons.length > 0) {
+                npc.weapons.forEach((weapon, index) => {
+                    const modifier = weapon.modifier || 0;
+                    const totalAttackBonus = weapon.attackBonus + modifier;
+                    const totalDamageBonus = weapon.damageBonus + modifier;
+                    const attackSign = totalAttackBonus >= 0 ? '+' : '';
+                    const damageSign = totalDamageBonus >= 0 ? '+' : '';
+                    const damageBonus = totalDamageBonus !== 0 ? ` ${damageSign}${totalDamageBonus}` : '';
                     const properties = weapon.properties && weapon.properties.length > 0 ? weapon.properties.join(', ') : '';
+                    const modifierBadge = modifier > 0 ? `<span class="weapon-modifier-badge">+${modifier}</span>` : '';
                     
                     html += `
                         <div class="weapon-card" title="${weapon.description || ''}">
                             <div class="weapon-header">
-                                <span class="weapon-name">${weapon.name}</span>
-                                <span class="weapon-type">${weapon.type === 'improvised' ? 'Improvised' : (weapon.type + ' ' + weapon.category)}</span>
+                                <span class="weapon-name">${weapon.name}${modifierBadge}</span>
+                                <span class="weapon-type">${weapon.type === 'improvised' ? 'Improvised' : (weapon.type === 'custom' ? 'Custom' : (weapon.type === 'natural' ? 'Natural' : (weapon.type + ' ' + weapon.category)))}</span>
                             </div>
                             <div class="weapon-stats">
                                 <div class="weapon-stat">
                                     <span class="weapon-stat-label">Attack:</span>
-                                    <span class="weapon-stat-value">${attackSign}${weapon.attackBonus}</span>
+                                    <span class="weapon-stat-value">${attackSign}${totalAttackBonus}</span>
                                 </div>
                                 <div class="weapon-stat">
                                     <span class="weapon-stat-label">Damage:</span>
-                                    <span class="weapon-stat-value">${weapon.damage}${damageBonus} ${weapon.damageType}</span>
+                                    <span class="weapon-stat-value">${weapon.damage === '0' || weapon.damage === 'none' || weapon.damageType === 'none' ? 'No Damage' : `${weapon.damage}${damageBonus} ${weapon.damageType}`}</span>
                                 </div>
                             </div>
                             ${properties ? `<div class="weapon-properties">${properties}</div>` : ''}
+                            <div class="weapon-card-actions">
+                                <button class="weapon-action-btn modifier" onclick="event.stopPropagation(); setWeaponModifier(${index})">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> ${modifier > 0 ? 'Change +' + modifier : 'Add Modifier'}
+                                </button>
+                                <button class="weapon-action-btn remove" onclick="event.stopPropagation(); removeWeapon(${index})">
+                                    <i class="fa-solid fa-trash"></i> Remove
+                                </button>
+                            </div>
                         </div>
                     `;
                 });
-                
-                html += `</div>`;
             }
+            
+            html += `
+                </div>
+                <div class="weapon-add-buttons">
+                    <button class="weapon-add-btn" onclick="event.stopPropagation(); openWeaponModal()">
+                        <i class="fa-solid fa-plus"></i> Add Weapon
+                    </button>
+                    <button class="weapon-add-btn" onclick="event.stopPropagation(); openCustomWeaponModal()">
+                        <i class="fa-solid fa-hammer"></i> Custom Weapon
+                    </button>
+                </div>
+            `;
 
             html += `
                     <div class="section-title"><i class="fa-solid fa-person"></i> Physical Traits</div>
@@ -6312,6 +6826,10 @@
                     <button class="export-pdf-btn" onclick="exportCharacterSheet()">
                         <i class="fa-solid fa-file-pdf"></i> Export Character Sheet
                     </button>
+                    <div class="checkbox-group" style="margin-top: 10px; justify-content: center;">
+                        <input type="checkbox" id="includeBackstory" checked>
+                        <label for="includeBackstory" style="margin: 0;"><i class="fa-solid fa-scroll"></i> Include Backstory in PDF</label>
+                    </div>
                 </div>
             `;
 
@@ -6377,21 +6895,24 @@
             const classSelect = document.getElementById('npcClass');
             const levelSelect = document.getElementById('npcClassLevel');
             const subclassSelect = document.getElementById('npcSubclass');
+            const occupationSelect = document.getElementById('occupation');
+            const occupationDesc = document.getElementById('occupationDescription');
             const multiclassSection = document.getElementById('multiclassSection');
             const selectedClass = classSelect.value;
             
+            const isCommoner = selectedClass === 'commoner';
             const isAdventurer = selectedClass !== 'commoner' && selectedClass !== 'random';
             
-            // Show/hide level selector
+            // Show/hide level selector (for adventurers only, commoner is always level 0)
             levelSelect.style.display = isAdventurer ? 'block' : 'none';
             
-            // Show/hide multiclass section
-            multiclassSection.style.display = isAdventurer ? 'block' : 'none';
+            // Show multiclass section for both commoners and adventurers (commoners can be retired adventurers)
+            multiclassSection.style.display = (isCommoner || isAdventurer) ? 'block' : 'none';
             
-            // If switching to commoner, clear multiclasses
-            if (!isAdventurer) {
-                multiclasses = [];
-                renderMulticlasses();
+            // Show/hide occupation (for commoner only)
+            occupationSelect.style.display = isCommoner ? 'block' : 'none';
+            if (!isCommoner && occupationDesc) {
+                occupationDesc.classList.add('hidden');
             }
             
             // Update subclass options
@@ -6460,8 +6981,19 @@
         function updateMulticlass(index, field, value) {
             if (field === 'class') {
                 multiclasses[index].className = value;
+                // Reset subclass when class changes
+                multiclasses[index].subclass = 'random';
+                renderMulticlasses(); // Re-render to show/hide subclass dropdown
             } else if (field === 'level') {
                 multiclasses[index].level = parseInt(value);
+                // Check if subclass should now appear/disappear
+                const subclassData = subclasses[multiclasses[index].className];
+                if (subclassData && parseInt(value) < subclassData.level) {
+                    multiclasses[index].subclass = null;
+                }
+                renderMulticlasses(); // Re-render to show/hide subclass dropdown
+            } else if (field === 'subclass') {
+                multiclasses[index].subclass = value;
             }
         }
 
@@ -6478,6 +7010,10 @@
                     c !== 'commoner' && (c === mc.className || !usedClasses.includes(c))
                 );
                 
+                // Check if subclass is available for this class and level
+                const subclassData = subclasses[mc.className];
+                const showSubclass = subclassData && mc.level >= subclassData.level;
+                
                 html += `
                     <div class="multiclass-row">
                         <select onchange="updateMulticlass(${index}, 'class', this.value)">
@@ -6493,6 +7029,14 @@
                         <button type="button" class="remove-multiclass-btn" onclick="removeMulticlass(${index})">
                             <i class="fa-solid fa-times"></i>
                         </button>
+                        ${showSubclass ? `
+                            <select class="subclass-select" onchange="updateMulticlass(${index}, 'subclass', this.value)">
+                                <option value="random" ${!mc.subclass || mc.subclass === 'random' ? 'selected' : ''}>Random ${subclassData.name}</option>
+                                ${subclassData.options.map(opt => `
+                                    <option value="${opt.id}" ${mc.subclass === opt.id ? 'selected' : ''}>${opt.name}</option>
+                                `).join('')}
+                            </select>
+                        ` : ''}
                     </div>
                 `;
             });
@@ -6594,6 +7138,7 @@
             showRaceDescription();
             showClassDescription();
             showOccupationDescription();
+            onClassChange(); // Set initial state for occupation/subclass visibility
         });
 
         // ============================================
@@ -6634,6 +7179,7 @@
                 const newValue = input.value.trim();
                 if (newValue && newValue !== currentValue) {
                     currentNPC[field] = newValue;
+                    regenerateBackstoryIfNeeded();
                 }
                 isEditing = false;
                 displayNPC(currentNPC);
@@ -6689,6 +7235,9 @@
                 const newValue = parseInt(input.value);
                 if (!isNaN(newValue) && newValue >= 0) {
                     currentNPC.age = newValue;
+                    // Update age category based on new age
+                    currentNPC.ageCategory = determineAgeCategory(newValue, currentNPC.race);
+                    regenerateBackstoryIfNeeded();
                 }
                 isEditing = false;
                 displayNPC(currentNPC);
@@ -7081,43 +7630,52 @@
             const characterClasses = currentNPC.characterClasses;
             currentNPC.npcClass = characterClasses[0]?.className || 'commoner';
             
-            // Recalculate total level
-            currentNPC.totalLevel = characterClasses.reduce((sum, cc) => sum + cc.level, 0);
+            // Recalculate total level (commoner is level 0, doesn't count)
+            currentNPC.totalLevel = characterClasses.reduce((sum, cc) => cc.className === 'commoner' ? sum : sum + cc.level, 0) || 1;
             
             // Recalculate proficiency bonus
             currentNPC.proficiencyBonus = getProficiencyBonus(currentNPC.totalLevel);
             
-            // Recalculate HP
+            // Recalculate HP (level 0 classes like commoner don't contribute)
             const hitDieMap = { 'd4': 4, 'd6': 6, 'd8': 8, 'd10': 10, 'd12': 12 };
             let hitPoints = 0;
             let hitDiceStr = [];
+            let firstAdventurerClass = true;
             
             characterClasses.forEach((cc, index) => {
+                // Skip level 0 classes (like commoner)
+                if (cc.level <= 0) return;
+                
                 const cd = classes[cc.className];
                 if (!cd) return;
                 const hitDieMax = hitDieMap[cd.hitDie] || 4;
                 const hitDieAvg = Math.floor(hitDieMax / 2) + 1;
                 
-                if (index === 0) {
+                if (firstAdventurerClass) {
                     hitPoints += hitDieMax + currentNPC.modifiers.con;
                     for (let lvl = 2; lvl <= cc.level; lvl++) {
                         hitPoints += hitDieAvg + currentNPC.modifiers.con;
                     }
+                    firstAdventurerClass = false;
                 } else {
                     for (let lvl = 1; lvl <= cc.level; lvl++) {
                         hitPoints += hitDieAvg + currentNPC.modifiers.con;
                     }
                 }
                 
-                if (cc.level > 0) {
-                    hitDiceStr.push(`${cc.level}${cd.hitDie}`);
-                }
+                hitDiceStr.push(`${cc.level}${cd.hitDie}`);
             });
             
             // Only update HP if not custom
             if (!currentNPC.customHP) {
-                currentNPC.hitPoints = Math.max(1, hitPoints);
-                currentNPC.hitDice = hitDiceStr.join(' + ');
+                // For pure commoners (level 0), give them 1 HP + CON modifier
+                if (hitPoints === 0) {
+                    currentNPC.hitPoints = Math.max(1, 1 + currentNPC.modifiers.con);
+                    currentNPC.hitDice = '';
+                } else {
+                    currentNPC.hitPoints = Math.max(1, hitPoints);
+                    currentNPC.hitDice = hitDiceStr.join(' + ');
+                }
             }
             
             // Update saving throws from primary class
@@ -7145,6 +7703,9 @@
             
             // Recalculate passive perception
             currentNPC.passivePerception = 10 + currentNPC.modifiers.wis + (currentNPC.skills.includes('Perception') ? currentNPC.proficiencyBonus : 0);
+            
+            // Regenerate backstory if not locked
+            regenerateBackstoryIfNeeded();
         }
 
         // Edit textarea field (Backstory)
@@ -7277,6 +7838,25 @@
                     currentNPC.equipment = occData.equipment || [];
                 }
             }
+            
+            // Regenerate backstory if not locked
+            regenerateBackstoryIfNeeded();
+        }
+        
+        // Regenerate backstory if not locked
+        function regenerateBackstoryIfNeeded() {
+            if (!currentNPC || lockStates.backstory) return;
+            
+            currentNPC.backstory = generateBackstory(
+                currentNPC.name,
+                currentNPC.race,
+                currentNPC.occupation,
+                currentNPC.age,
+                currentNPC.alignment,
+                currentNPC.ageCategory,
+                currentNPC.gender,
+                currentNPC.characterClasses
+            );
         }
 
         // Get options for select fields
@@ -7295,10 +7875,13 @@
         }
 
         function getOccupationOptions() {
-            return Object.keys(occupations).map(o => ({
-                value: o,
-                label: o.replace(/_/g, ' ').split(' ').map(w => capitalize(w)).join(' ')
-            })).sort((a, b) => a.label.localeCompare(b.label));
+            // Filter out auto-assigned occupations (infant, adventurer)
+            return Object.keys(occupations)
+                .filter(o => o !== 'infant' && o !== 'adventurer')
+                .map(o => ({
+                    value: o,
+                    label: o.replace(/_/g, ' ').split(' ').map(w => capitalize(w)).join(' ')
+                })).sort((a, b) => a.label.localeCompare(b.label));
         }
 
         function getGenderOptions() {
@@ -7568,6 +8151,253 @@
                 displayNPC(currentNPC);
             }
             closeSpellModal();
+        }
+
+        // ============================================
+        // WEAPON MODAL FUNCTIONS
+        // ============================================
+
+        let selectedWeaponId = null;
+        let currentWeaponModifierIndex = null;
+
+        function openWeaponModal() {
+            if (!currentNPC) return;
+            
+            selectedWeaponId = null;
+            document.getElementById('weaponSearchInput').value = '';
+            document.getElementById('weaponTypeFilter').value = 'all';
+            document.getElementById('weaponCategoryFilter').value = 'all';
+            document.getElementById('weaponModifierSelect').value = '0';
+            
+            renderWeaponList();
+            
+            const modal = document.getElementById('weaponSelectModal');
+            modal.classList.add('active');
+        }
+
+        function renderWeaponList() {
+            const searchTerm = document.getElementById('weaponSearchInput').value.toLowerCase();
+            const typeFilter = document.getElementById('weaponTypeFilter').value;
+            const categoryFilter = document.getElementById('weaponCategoryFilter').value;
+            
+            const container = document.getElementById('weaponModalOptions');
+            
+            // Filter weapons
+            const filteredWeapons = Object.keys(weapons).filter(weaponId => {
+                const weapon = weapons[weaponId];
+                
+                // Search filter
+                if (searchTerm && !weapon.name.toLowerCase().includes(searchTerm)) return false;
+                
+                // Type filter
+                if (typeFilter !== 'all' && weapon.type !== typeFilter) return false;
+                
+                // Category filter
+                if (categoryFilter !== 'all' && weapon.category !== categoryFilter) return false;
+                
+                return true;
+            }).sort((a, b) => {
+                const weaponA = weapons[a];
+                const weaponB = weapons[b];
+                // Sort by type, then category, then name
+                if (weaponA.type !== weaponB.type) return weaponA.type.localeCompare(weaponB.type);
+                if (weaponA.category !== weaponB.category) return weaponA.category.localeCompare(weaponB.category);
+                return weaponA.name.localeCompare(weaponB.name);
+            });
+            
+            if (filteredWeapons.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: #6c757d; padding: 20px;">No weapons match your filters</div>';
+                return;
+            }
+            
+            let html = '';
+            filteredWeapons.forEach(weaponId => {
+                const weapon = weapons[weaponId];
+                const isSelected = selectedWeaponId === weaponId;
+                const isProficient = currentNPC ? isWeaponProficient(currentNPC.characterClasses?.[0]?.className || 'commoner', weaponId) : false;
+                const profBadge = isProficient ? '<span style="color: #28a745; font-size: 0.75em; margin-left: 5px;">(Proficient)</span>' : '';
+                
+                html += `
+                    <div class="weapon-modal-item ${isSelected ? 'selected' : ''}" onclick="selectWeaponInModal('${weaponId}')">
+                        <div class="weapon-modal-item-info">
+                            <div class="weapon-modal-item-name">${weapon.name}${profBadge}</div>
+                            <div class="weapon-modal-item-details">${capitalize(weapon.type)} ${weapon.category} • ${weapon.properties.length > 0 ? weapon.properties.join(', ') : 'No special properties'}</div>
+                        </div>
+                        <div class="weapon-modal-item-stats">
+                            <div>${weapon.damage === '0' || weapon.damage === 'none' || weapon.damageType === 'none' ? '<strong>No Damage</strong>' : `<strong>${weapon.damage}</strong> ${weapon.damageType}`}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function filterWeaponList() {
+            renderWeaponList();
+        }
+
+        function selectWeaponInModal(weaponId) {
+            selectedWeaponId = weaponId;
+            renderWeaponList();
+        }
+
+        function addSelectedWeapon() {
+            if (!selectedWeaponId || !currentNPC) {
+                alert('Please select a weapon first');
+                return;
+            }
+            
+            const weapon = weapons[selectedWeaponId];
+            const modifier = parseInt(document.getElementById('weaponModifierSelect').value) || 0;
+            const profBonus = currentNPC.proficiencyBonus || 2;
+            const isProficient = isWeaponProficient(currentNPC.characterClasses?.[0]?.className || 'commoner', selectedWeaponId);
+            
+            const newWeapon = {
+                ...weapon,
+                id: selectedWeaponId,
+                isProficient: isProficient,
+                modifier: modifier,
+                attackBonus: calculateAttackBonus(weapon, currentNPC.modifiers, profBonus, isProficient),
+                damageBonus: calculateDamageBonus(weapon, currentNPC.modifiers)
+            };
+            
+            if (!currentNPC.weapons) currentNPC.weapons = [];
+            currentNPC.weapons.push(newWeapon);
+            
+            closeWeaponModal();
+            displayNPC(currentNPC);
+        }
+
+        function closeWeaponModal() {
+            const modal = document.getElementById('weaponSelectModal');
+            modal.classList.remove('active');
+            selectedWeaponId = null;
+        }
+
+        // Custom Weapon Modal
+        function openCustomWeaponModal() {
+            if (!currentNPC) return;
+            
+            // Reset form
+            document.getElementById('customWeaponName').value = '';
+            document.getElementById('customWeaponDamage').value = '';
+            document.getElementById('customWeaponDamageType').value = 'slashing';
+            document.getElementById('customWeaponCategory').value = 'melee';
+            document.getElementById('customWeaponAbility').value = 'str';
+            document.getElementById('customWeaponModifier').value = '0';
+            document.getElementById('customWeaponProperties').value = '';
+            document.getElementById('customWeaponDescription').value = '';
+            
+            const modal = document.getElementById('customWeaponModal');
+            modal.classList.add('active');
+        }
+
+        function closeCustomWeaponModal() {
+            const modal = document.getElementById('customWeaponModal');
+            modal.classList.remove('active');
+        }
+
+        function addCustomWeapon() {
+            const name = document.getElementById('customWeaponName').value.trim();
+            const damage = document.getElementById('customWeaponDamage').value.trim();
+            const damageType = document.getElementById('customWeaponDamageType').value;
+            const category = document.getElementById('customWeaponCategory').value;
+            const ability = document.getElementById('customWeaponAbility').value;
+            const modifier = parseInt(document.getElementById('customWeaponModifier').value) || 0;
+            const propertiesStr = document.getElementById('customWeaponProperties').value.trim();
+            const description = document.getElementById('customWeaponDescription').value.trim();
+            
+            if (!name || !damage) {
+                alert('Please enter at least a weapon name and damage');
+                return;
+            }
+            
+            const properties = propertiesStr ? propertiesStr.split(',').map(p => p.trim()).filter(p => p) : [];
+            if (ability === 'finesse' && !properties.includes('finesse')) {
+                properties.push('finesse');
+            }
+            
+            const profBonus = currentNPC.proficiencyBonus || 2;
+            
+            // Calculate attack bonus based on ability
+            let attackBonus;
+            if (ability === 'finesse') {
+                attackBonus = Math.max(currentNPC.modifiers.str, currentNPC.modifiers.dex) + profBonus;
+            } else if (ability === 'dex' || category === 'ranged') {
+                attackBonus = currentNPC.modifiers.dex + profBonus;
+            } else {
+                attackBonus = currentNPC.modifiers.str + profBonus;
+            }
+            
+            // Calculate damage bonus
+            let damageBonus;
+            if (ability === 'finesse') {
+                damageBonus = Math.max(currentNPC.modifiers.str, currentNPC.modifiers.dex);
+            } else if (ability === 'dex' || category === 'ranged') {
+                damageBonus = currentNPC.modifiers.dex;
+            } else {
+                damageBonus = currentNPC.modifiers.str;
+            }
+            
+            const newWeapon = {
+                id: 'custom-' + Date.now(),
+                name: name,
+                type: 'custom',
+                category: category,
+                damage: damage,
+                damageType: damageType,
+                properties: properties,
+                description: description || 'A custom weapon.',
+                isProficient: true,
+                modifier: modifier,
+                attackBonus: attackBonus,
+                damageBonus: damageBonus
+            };
+            
+            if (!currentNPC.weapons) currentNPC.weapons = [];
+            currentNPC.weapons.push(newWeapon);
+            
+            closeCustomWeaponModal();
+            displayNPC(currentNPC);
+        }
+
+        // Weapon Modifier Modal
+        function setWeaponModifier(index) {
+            if (!currentNPC || !currentNPC.weapons || !currentNPC.weapons[index]) return;
+            
+            currentWeaponModifierIndex = index;
+            const weapon = currentNPC.weapons[index];
+            
+            document.getElementById('weaponModifierName').textContent = weapon.name;
+            document.getElementById('weaponModifierValue').value = weapon.modifier || 0;
+            
+            const modal = document.getElementById('weaponModifierModal');
+            modal.classList.add('active');
+        }
+
+        function closeWeaponModifierModal() {
+            const modal = document.getElementById('weaponModifierModal');
+            modal.classList.remove('active');
+            currentWeaponModifierIndex = null;
+        }
+
+        function saveWeaponModifier() {
+            if (currentWeaponModifierIndex === null || !currentNPC || !currentNPC.weapons) return;
+            
+            const modifier = parseInt(document.getElementById('weaponModifierValue').value) || 0;
+            currentNPC.weapons[currentWeaponModifierIndex].modifier = modifier;
+            
+            closeWeaponModifierModal();
+            displayNPC(currentNPC);
+        }
+
+        // Remove Weapon
+        function removeWeapon(index) {
+            if (!currentNPC || !currentNPC.weapons) return;
+            
+            currentNPC.weapons.splice(index, 1);
+            displayNPC(currentNPC);
         }
 
         function openMultiSelectModal(field, title, options, currentSelections) {
@@ -8054,10 +8884,13 @@
             const portraitHtml = hasPortrait ? 
                 `<img src="${portraitImg.src}" style="max-width: 200px; max-height: 200px; border-radius: 8px; margin-bottom: 15px;">` : '';
             
-            // Build multiclass display with subclasses
+            // Build multiclass display with subclasses (commoner doesn't show level since it's 0)
             const classDisplay = npc.characterClasses && npc.characterClasses.length > 0 ?
                 npc.characterClasses.map(c => {
-                    let display = `${capitalize(c.className)} ${c.level}`;
+                    // Commoner is level 0, so don't show level number
+                    let display = c.className === 'commoner' 
+                        ? 'Commoner' 
+                        : `${capitalize(c.className)} ${c.level}`;
                     if (c.subclass && subclasses[c.className]) {
                         const subclassData = subclasses[c.className];
                         const subclassOption = subclassData.options.find(o => o.id === c.subclass);
@@ -8127,7 +8960,7 @@
             <h1>${npc.name}</h1>
             <div class="subtitle">
                 ${capitalize(npc.gender)} ${capitalize(npc.race)} ${classDisplay} | Level ${npc.totalLevel || 1}<br>
-                ${capitalize(npc.occupation)} | ${capitalize(npc.alignment)}
+                ${npc.characterClasses?.some(cc => cc.className === 'commoner') ? capitalize(npc.occupation) + ' | ' : ''}${capitalize(npc.alignment)}
             </div>
         </div>
         <div class="header-portrait">
@@ -8191,27 +9024,58 @@
             <div class="proficient-note">* = proficient</div>
 
             <h2>Weapons</h2>
-            ${npc.weapons && npc.weapons.length > 0 ? `
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
-                <thead>
-                    <tr style="background: #c9ad6a; color: #3e0c02;">
-                        <th style="padding: 5px; text-align: left; border: 1px solid #a08050;">Weapon</th>
-                        <th style="padding: 5px; text-align: center; border: 1px solid #a08050;">Attack</th>
-                        <th style="padding: 5px; text-align: center; border: 1px solid #a08050;">Damage</th>
-                        <th style="padding: 5px; text-align: left; border: 1px solid #a08050;">Properties</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${npc.weapons.map(weapon => {
-                        const attackSign = weapon.attackBonus >= 0 ? '+' : '';
-                        const damageSign = weapon.damageBonus >= 0 ? '+' : '';
-                        const damageBonus = weapon.damageBonus !== 0 ? ' ' + damageSign + weapon.damageBonus : '';
+            ${(() => {
+                const isInfant = npc.ageCategory === 'infant';
+                let weaponRows = '';
+                
+                // Show Tiny Fists for infants, Unarmed Strike for others
+                if (isInfant) {
+                    weaponRows = '<tr style="background: #f0e6d2;"><td style="padding: 5px; border: 1px solid #c9ad6a;"><strong>Tiny Fists</strong><br><span style="font-size: 0.8em; color: #6c757d;">Natural</span></td><td style="padding: 5px; text-align: center; border: 1px solid #c9ad6a;">+0</td><td style="padding: 5px; text-align: center; border: 1px solid #c9ad6a;">No Damage</td><td style="padding: 5px; border: 1px solid #c9ad6a; font-size: 0.85em;">—</td></tr>';
+                } else {
+                    const unarmed = getUnarmedStrike(
+                        npc.characterClasses?.[0]?.className || 'commoner',
+                        npc.totalLevel || 1,
+                        npc.modifiers,
+                        npc.proficiencyBonus || 2
+                    );
+                    const unarmedAttackSign = unarmed.attackBonus >= 0 ? '+' : '';
+                    const unarmedDamageSign = unarmed.damageBonus >= 0 ? '+' : '';
+                    const unarmedDamageBonus = unarmed.damageBonus !== 0 ? ' ' + unarmedDamageSign + unarmed.damageBonus : '';
+                    const unarmedProps = unarmed.properties && unarmed.properties.length > 0 ? unarmed.properties.join(', ') : '—';
+                    
+                    weaponRows = '<tr style="background: #f0e6d2;"><td style="padding: 5px; border: 1px solid #c9ad6a;"><strong>Unarmed Strike</strong><br><span style="font-size: 0.8em; color: #6c757d;">Natural</span></td><td style="padding: 5px; text-align: center; border: 1px solid #c9ad6a;">' + unarmedAttackSign + unarmed.attackBonus + '</td><td style="padding: 5px; text-align: center; border: 1px solid #c9ad6a;">' + unarmed.damage + unarmedDamageBonus + ' ' + unarmed.damageType + '</td><td style="padding: 5px; border: 1px solid #c9ad6a; font-size: 0.85em;">' + unarmedProps + '</td></tr>';
+                }
+                
+                // Add racial natural weapon if applicable
+                const racialWeapon = getRacialNaturalWeapon(npc.race, npc.modifiers);
+                if (racialWeapon) {
+                    // Infants deal only 1 damage with no modifier
+                    const racialAttackBonus = isInfant ? 0 : npc.modifiers.str + (npc.proficiencyBonus || 2);
+                    const racialAttackSign = racialAttackBonus >= 0 ? '+' : '';
+                    const racialDamage = isInfant ? '1' : racialWeapon.damage;
+                    const racialDamageSign = racialWeapon.damageBonus >= 0 ? '+' : '';
+                    const racialDamageBonus = isInfant ? '' : (racialWeapon.damageBonus !== 0 ? ' ' + racialDamageSign + racialWeapon.damageBonus : '');
+                    weaponRows += '<tr style="background: #f5ecd4;"><td style="padding: 5px; border: 1px solid #c9ad6a;"><strong>' + racialWeapon.name + '</strong><br><span style="font-size: 0.8em; color: #8b6914;">Racial</span></td><td style="padding: 5px; text-align: center; border: 1px solid #c9ad6a;">' + racialAttackSign + racialAttackBonus + '</td><td style="padding: 5px; text-align: center; border: 1px solid #c9ad6a;">' + racialDamage + racialDamageBonus + ' ' + racialWeapon.damageType + '</td><td style="padding: 5px; border: 1px solid #c9ad6a; font-size: 0.85em;">—</td></tr>';
+                }
+                
+                if (npc.weapons && npc.weapons.length > 0) {
+                    weaponRows += npc.weapons.map(weapon => {
+                        const modifier = weapon.modifier || 0;
+                        const totalAttack = weapon.attackBonus + modifier;
+                        const totalDamage = weapon.damageBonus + modifier;
+                        const attackSign = totalAttack >= 0 ? '+' : '';
+                        const damageSign = totalDamage >= 0 ? '+' : '';
+                        const damageBonus = totalDamage !== 0 ? ' ' + damageSign + totalDamage : '';
                         const properties = weapon.properties && weapon.properties.length > 0 ? weapon.properties.join(', ') : '—';
-                        return '<tr style="background: #fdf1dc;"><td style="padding: 5px; border: 1px solid #c9ad6a;"><strong>' + weapon.name + '</strong><br><span style="font-size: 0.8em; color: #6c757d;">' + (weapon.type === 'improvised' ? 'Improvised' : weapon.type + ' ' + weapon.category) + '</span></td><td style="padding: 5px; text-align: center; border: 1px solid #c9ad6a;">' + attackSign + weapon.attackBonus + '</td><td style="padding: 5px; text-align: center; border: 1px solid #c9ad6a;">' + weapon.damage + damageBonus + ' ' + weapon.damageType + '</td><td style="padding: 5px; border: 1px solid #c9ad6a; font-size: 0.85em;">' + properties + '</td></tr>';
-                    }).join('')}
-                </tbody>
-            </table>
-            ` : '<p>None</p>'}
+                        const modifierText = modifier > 0 ? ' <span style="color: #28a745; font-weight: bold;">+' + modifier + '</span>' : '';
+                        const typeText = weapon.type === 'improvised' ? 'Improvised' : (weapon.type === 'custom' ? 'Custom' : (weapon.type === 'natural' ? 'Natural' : weapon.type + ' ' + weapon.category));
+                        const damageDisplay = (weapon.damage === '0' || weapon.damage === 'none' || weapon.damageType === 'none') ? 'No Damage' : weapon.damage + damageBonus + ' ' + weapon.damageType;
+                        return '<tr style="background: #fdf1dc;"><td style="padding: 5px; border: 1px solid #c9ad6a;"><strong>' + weapon.name + modifierText + '</strong><br><span style="font-size: 0.8em; color: #6c757d;">' + typeText + '</span></td><td style="padding: 5px; text-align: center; border: 1px solid #c9ad6a;">' + attackSign + totalAttack + '</td><td style="padding: 5px; text-align: center; border: 1px solid #c9ad6a;">' + damageDisplay + '</td><td style="padding: 5px; border: 1px solid #c9ad6a; font-size: 0.85em;">' + properties + '</td></tr>';
+                    }).join('');
+                }
+                
+                return '<table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;"><thead><tr style="background: #c9ad6a; color: #3e0c02;"><th style="padding: 5px; text-align: left; border: 1px solid #a08050;">Weapon</th><th style="padding: 5px; text-align: center; border: 1px solid #a08050;">Attack</th><th style="padding: 5px; text-align: center; border: 1px solid #a08050;">Damage</th><th style="padding: 5px; text-align: left; border: 1px solid #a08050;">Properties</th></tr></thead><tbody>' + weaponRows + '</tbody></table>';
+            })()}
 
             <h2>Equipment</h2>
             <ul class="equipment-list">
@@ -8292,10 +9156,12 @@
     ` : ''}
     ` : ''}
 
+    ${document.getElementById('includeBackstory')?.checked ? `
     <h2>Backstory</h2>
     <div class="backstory">${npc.backstory}</div>
+    ` : ''}
 
-    <script>
+    <scr` + `ipt>
         // Auto-print when opened
         window.onload = function() {
             window.print();
@@ -8356,6 +9222,163 @@
             <div class="modal-footer">
                 <button class="modal-btn modal-btn-cancel" onclick="closeSpellModal()">Cancel</button>
                 <button class="modal-btn modal-btn-save" onclick="saveSpellSelections()">
+                    <i class="fa-solid fa-check"></i> Save
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Weapon Select Modal -->
+    <div id="weaponSelectModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 650px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="weaponModalTitle"><i class="fa-solid fa-khanda"></i> Add Weapon</h3>
+                <button class="modal-close" onclick="closeWeaponModal()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="weapon-modal-filters">
+                    <input type="text" id="weaponSearchInput" class="weapon-modal-filter weapon-modal-search" placeholder="Search weapons..." oninput="filterWeaponList()">
+                    <select id="weaponTypeFilter" class="weapon-modal-filter" onchange="filterWeaponList()">
+                        <option value="all">All Types</option>
+                        <option value="simple">Simple</option>
+                        <option value="martial">Martial</option>
+                    </select>
+                    <select id="weaponCategoryFilter" class="weapon-modal-filter" onchange="filterWeaponList()">
+                        <option value="all">All Categories</option>
+                        <option value="melee">Melee</option>
+                        <option value="ranged">Ranged</option>
+                    </select>
+                    <select id="weaponModifierSelect" class="weapon-modal-filter">
+                        <option value="0">No Modifier</option>
+                        <option value="1">+1</option>
+                        <option value="2">+2</option>
+                        <option value="3">+3</option>
+                    </select>
+                </div>
+                <div id="weaponModalOptions" style="max-height: 45vh; overflow-y: auto;"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-cancel" onclick="closeWeaponModal()">Cancel</button>
+                <button class="modal-btn modal-btn-save" onclick="addSelectedWeapon()">
+                    <i class="fa-solid fa-plus"></i> Add Weapon
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Weapon Modal -->
+    <div id="customWeaponModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fa-solid fa-hammer"></i> Create Custom Weapon</h3>
+                <button class="modal-close" onclick="closeCustomWeaponModal()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="custom-weapon-form">
+                    <div class="custom-weapon-row">
+                        <div class="custom-weapon-field" style="flex: 2;">
+                            <label>Weapon Name *</label>
+                            <input type="text" id="customWeaponName" placeholder="e.g., Dragon Fang Sword">
+                        </div>
+                        <div class="custom-weapon-field">
+                            <label>Modifier</label>
+                            <select id="customWeaponModifier">
+                                <option value="0">None</option>
+                                <option value="1">+1</option>
+                                <option value="2">+2</option>
+                                <option value="3">+3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="custom-weapon-row">
+                        <div class="custom-weapon-field">
+                            <label>Damage *</label>
+                            <input type="text" id="customWeaponDamage" placeholder="e.g., 1d8">
+                        </div>
+                        <div class="custom-weapon-field">
+                            <label>Damage Type *</label>
+                            <select id="customWeaponDamageType">
+                                <option value="slashing">Slashing</option>
+                                <option value="piercing">Piercing</option>
+                                <option value="bludgeoning">Bludgeoning</option>
+                                <option value="fire">Fire</option>
+                                <option value="cold">Cold</option>
+                                <option value="lightning">Lightning</option>
+                                <option value="thunder">Thunder</option>
+                                <option value="acid">Acid</option>
+                                <option value="poison">Poison</option>
+                                <option value="necrotic">Necrotic</option>
+                                <option value="radiant">Radiant</option>
+                                <option value="force">Force</option>
+                                <option value="psychic">Psychic</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="custom-weapon-row">
+                        <div class="custom-weapon-field">
+                            <label>Category</label>
+                            <select id="customWeaponCategory">
+                                <option value="melee">Melee</option>
+                                <option value="ranged">Ranged</option>
+                            </select>
+                        </div>
+                        <div class="custom-weapon-field">
+                            <label>Ability</label>
+                            <select id="customWeaponAbility">
+                                <option value="str">Strength</option>
+                                <option value="dex">Dexterity</option>
+                                <option value="finesse">Finesse (STR or DEX)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="custom-weapon-row">
+                        <div class="custom-weapon-field" style="flex: 1;">
+                            <label>Properties (comma-separated)</label>
+                            <input type="text" id="customWeaponProperties" placeholder="e.g., light, finesse, thrown (20/60)">
+                        </div>
+                    </div>
+                    <div class="custom-weapon-row">
+                        <div class="custom-weapon-field" style="flex: 1;">
+                            <label>Description (optional)</label>
+                            <input type="text" id="customWeaponDescription" placeholder="A legendary blade forged in dragon fire...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-cancel" onclick="closeCustomWeaponModal()">Cancel</button>
+                <button class="modal-btn modal-btn-save" onclick="addCustomWeapon()">
+                    <i class="fa-solid fa-plus"></i> Create Weapon
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Weapon Modifier Modal -->
+    <div id="weaponModifierModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 350px;">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fa-solid fa-wand-magic-sparkles"></i> Set Modifier</h3>
+                <button class="modal-close" onclick="closeWeaponModifierModal()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body" style="text-align: center; padding: 20px;">
+                <p id="weaponModifierName" style="font-weight: 600; margin-bottom: 15px;"></p>
+                <select id="weaponModifierValue" style="padding: 10px 20px; font-size: 1.1em; border-radius: 6px; border: 2px solid #c9ad6a;">
+                    <option value="0">No Modifier</option>
+                    <option value="1">+1</option>
+                    <option value="2">+2</option>
+                    <option value="3">+3</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-cancel" onclick="closeWeaponModifierModal()">Cancel</button>
+                <button class="modal-btn modal-btn-save" onclick="saveWeaponModifier()">
                     <i class="fa-solid fa-check"></i> Save
                 </button>
             </div>
